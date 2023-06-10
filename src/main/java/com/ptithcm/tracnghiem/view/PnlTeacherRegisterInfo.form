@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[400, 624]"/>
+    </Property>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,38,0,0,1,-112"/>
+  </AuxValues>
+
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="North"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="false"/>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="btnResetForm">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/24x24/reset.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnResetFormMouseClicked"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="btnResetForm.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseMoved(java.awt.event.MouseEvent evt) {&#xa;        btnResetForm.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;    }&#xa;&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnResetForm.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));&#xa;    }&#xa;});&#xa;&#xa;btnResetForm.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {&#xa;    public void mouseMoved(java.awt.event.MouseEvent evt) {&#xa;        btnResetForm.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;    }&#xa;});"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="360" y="0" width="30" height="40"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN &#x110;&#x102;NG K&#xdd; THI C&#x1ee6;A GI&#xc1;O VI&#xca;N"/>
+            <Property name="opaque" type="boolean" value="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[110, 40]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="0" y="0" width="400" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="After"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel3">
+          <Properties>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[400, 582]"/>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel11" min="-2" pref="83" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cboClassroomCode" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel5" min="-2" pref="83" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cboSubject" min="-2" pref="286" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel4" min="-2" pref="83" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="dateTime" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel2" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Component id="jLabel3" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="cboTimes" min="-2" pref="286" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="cboLevel" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel7" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="cboTime" pref="286" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel6" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="cboQuestionQuantity" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel8" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtTeacherCode" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel11" pref="34" max="32767" attributes="0"/>
+                          <Component id="cboClassroomCode" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel5" pref="34" max="32767" attributes="0"/>
+                          <Component id="cboSubject" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="cboTimes" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel3" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="cboLevel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel4" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="dateTime" min="-2" pref="181" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel6" max="32767" attributes="0"/>
+                          <Component id="cboQuestionQuantity" min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel7" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="cboTime" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel8" max="32767" attributes="0"/>
+                          <Component id="txtTeacherCode" min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="101" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="L&#x1ea7;n thi:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cboTimes">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="1"/>
+                    <StringItem index="1" value="2"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tr&#xec;nh &#x111;&#x1ed9;:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cboLevel">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboLevelActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ng&#xe0;y thi:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="M&#xf4;n h&#x1ecd;c:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S&#x1ed1; c&#xe2;u thi:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Th&#x1edd;i gian thi:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gv &#x111;&#x103;ng k&#xfd;:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel11">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="L&#x1edb;p:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cboClassroomCode">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboClassroomCodeItemStateChanged"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cboSubject">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboSubjectItemStateChanged"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cboQuestionQuantity">
+              <Properties>
+                <Property name="editable" type="boolean" value="true"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="91">
+                    <StringItem index="0" value="10"/>
+                    <StringItem index="1" value="11"/>
+                    <StringItem index="2" value="12"/>
+                    <StringItem index="3" value="13"/>
+                    <StringItem index="4" value="14"/>
+                    <StringItem index="5" value="15"/>
+                    <StringItem index="6" value="16"/>
+                    <StringItem index="7" value="17"/>
+                    <StringItem index="8" value="18"/>
+                    <StringItem index="9" value="19"/>
+                    <StringItem index="10" value="20"/>
+                    <StringItem index="11" value="21"/>
+                    <StringItem index="12" value="22"/>
+                    <StringItem index="13" value="23"/>
+                    <StringItem index="14" value="24"/>
+                    <StringItem index="15" value="25"/>
+                    <StringItem index="16" value="26"/>
+                    <StringItem index="17" value="27"/>
+                    <StringItem index="18" value="28"/>
+                    <StringItem index="19" value="29"/>
+                    <StringItem index="20" value="30"/>
+                    <StringItem index="21" value="31"/>
+                    <StringItem index="22" value="32"/>
+                    <StringItem index="23" value="33"/>
+                    <StringItem index="24" value="34"/>
+                    <StringItem index="25" value="35"/>
+                    <StringItem index="26" value="36"/>
+                    <StringItem index="27" value="37"/>
+                    <StringItem index="28" value="38"/>
+                    <StringItem index="29" value="39"/>
+                    <StringItem index="30" value="40"/>
+                    <StringItem index="31" value="41"/>
+                    <StringItem index="32" value="42"/>
+                    <StringItem index="33" value="43"/>
+                    <StringItem index="34" value="44"/>
+                    <StringItem index="35" value="45"/>
+                    <StringItem index="36" value="46"/>
+                    <StringItem index="37" value="47"/>
+                    <StringItem index="38" value="48"/>
+                    <StringItem index="39" value="49"/>
+                    <StringItem index="40" value="50"/>
+                    <StringItem index="41" value="51"/>
+                    <StringItem index="42" value="52"/>
+                    <StringItem index="43" value="53"/>
+                    <StringItem index="44" value="54"/>
+                    <StringItem index="45" value="55"/>
+                    <StringItem index="46" value="56"/>
+                    <StringItem index="47" value="57"/>
+                    <StringItem index="48" value="58"/>
+                    <StringItem index="49" value="59"/>
+                    <StringItem index="50" value="60"/>
+                    <StringItem index="51" value="61"/>
+                    <StringItem index="52" value="62"/>
+                    <StringItem index="53" value="63"/>
+                    <StringItem index="54" value="64"/>
+                    <StringItem index="55" value="65"/>
+                    <StringItem index="56" value="66"/>
+                    <StringItem index="57" value="67"/>
+                    <StringItem index="58" value="68"/>
+                    <StringItem index="59" value="69"/>
+                    <StringItem index="60" value="70"/>
+                    <StringItem index="61" value="71"/>
+                    <StringItem index="62" value="72"/>
+                    <StringItem index="63" value="73"/>
+                    <StringItem index="64" value="74"/>
+                    <StringItem index="65" value="75"/>
+                    <StringItem index="66" value="76"/>
+                    <StringItem index="67" value="77"/>
+                    <StringItem index="68" value="78"/>
+                    <StringItem index="69" value="79"/>
+                    <StringItem index="70" value="80"/>
+                    <StringItem index="71" value="81"/>
+                    <StringItem index="72" value="82"/>
+                    <StringItem index="73" value="83"/>
+                    <StringItem index="74" value="84"/>
+                    <StringItem index="75" value="85"/>
+                    <StringItem index="76" value="86"/>
+                    <StringItem index="77" value="87"/>
+                    <StringItem index="78" value="88"/>
+                    <StringItem index="79" value="89"/>
+                    <StringItem index="80" value="90"/>
+                    <StringItem index="81" value="91"/>
+                    <StringItem index="82" value="92"/>
+                    <StringItem index="83" value="93"/>
+                    <StringItem index="84" value="94"/>
+                    <StringItem index="85" value="95"/>
+                    <StringItem index="86" value="96"/>
+                    <StringItem index="87" value="97"/>
+                    <StringItem index="88" value="98"/>
+                    <StringItem index="89" value="99"/>
+                    <StringItem index="90" value="100"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cboTime">
+              <Properties>
+                <Property name="editable" type="boolean" value="true"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="46">
+                    <StringItem index="0" value="15"/>
+                    <StringItem index="1" value="16"/>
+                    <StringItem index="2" value="17"/>
+                    <StringItem index="3" value="18"/>
+                    <StringItem index="4" value="19"/>
+                    <StringItem index="5" value="20"/>
+                    <StringItem index="6" value="21"/>
+                    <StringItem index="7" value="22"/>
+                    <StringItem index="8" value="23"/>
+                    <StringItem index="9" value="24"/>
+                    <StringItem index="10" value="25"/>
+                    <StringItem index="11" value="26"/>
+                    <StringItem index="12" value="27"/>
+                    <StringItem index="13" value="28"/>
+                    <StringItem index="14" value="29"/>
+                    <StringItem index="15" value="30"/>
+                    <StringItem index="16" value="31"/>
+                    <StringItem index="17" value="32"/>
+                    <StringItem index="18" value="33"/>
+                    <StringItem index="19" value="34"/>
+                    <StringItem index="20" value="35"/>
+                    <StringItem index="21" value="36"/>
+                    <StringItem index="22" value="37"/>
+                    <StringItem index="23" value="38"/>
+                    <StringItem index="24" value="39"/>
+                    <StringItem index="25" value="40"/>
+                    <StringItem index="26" value="41"/>
+                    <StringItem index="27" value="42"/>
+                    <StringItem index="28" value="43"/>
+                    <StringItem index="29" value="44"/>
+                    <StringItem index="30" value="45"/>
+                    <StringItem index="31" value="46"/>
+                    <StringItem index="32" value="47"/>
+                    <StringItem index="33" value="48"/>
+                    <StringItem index="34" value="49"/>
+                    <StringItem index="35" value="50"/>
+                    <StringItem index="36" value="51"/>
+                    <StringItem index="37" value="52"/>
+                    <StringItem index="38" value="53"/>
+                    <StringItem index="39" value="54"/>
+                    <StringItem index="40" value="55"/>
+                    <StringItem index="41" value="56"/>
+                    <StringItem index="42" value="57"/>
+                    <StringItem index="43" value="58"/>
+                    <StringItem index="44" value="59"/>
+                    <StringItem index="45" value="60"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtTeacherCode">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="com.ptithcm.tracnghiem.view.JDateTimePicker" name="dateTime">
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
