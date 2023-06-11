@@ -5,6 +5,8 @@
 package com.ptithcm.tracnghiem.service;
 
 import com.ptithcm.tracnghiem.configuration.DatabaseConnectors;
+import com.ptithcm.tracnghiem.entity.SinhVien;
+import com.ptithcm.tracnghiem.global_variable.LoginVariables;
 import com.ptithcm.tracnghiem.global_variable.SubscribersVariables;
 import com.ptithcm.tracnghiem.model.dto.Subscriber;
 import com.ptithcm.tracnghiem.repository.SqlServerRepository;
@@ -58,4 +60,7 @@ public class SubscriberService {
         }
         return subscribers;
     }
+    
+    
+    
 }

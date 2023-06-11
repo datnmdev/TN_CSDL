@@ -12,6 +12,7 @@ import com.ptithcm.tracnghiem.global_variable.LoginVariables;
 import com.ptithcm.tracnghiem.global_variable.SubscribersVariables;
 import com.ptithcm.tracnghiem.model.dto.ActionStatusEnum;
 import com.ptithcm.tracnghiem.model.dto.ObjectAction;
+import com.ptithcm.tracnghiem.repository.SinhVienRepository;
 import com.ptithcm.tracnghiem.service.SinhVienService;
 import com.ptithcm.tracnghiem.service.SubscriberService;
 import com.ptithcm.tracnghiem.service.UndoRedo;
@@ -47,10 +48,10 @@ public class PnlStudentManager extends javax.swing.JPanel {
 
     private FrmMain frmMain;
     private String tabName;
-    
+
     //khai báo cái này để cho validation
     private String masv;
-    
+
     private List<ObjectAction> objectActions = new ArrayList<>();
     private UndoRedo undoRedo = new UndoRedo();
     private JPanel pnlObjectInfo;
@@ -106,6 +107,11 @@ public class PnlStudentManager extends javax.swing.JPanel {
 
         cboSide.setMinimumSize(new java.awt.Dimension(200, 40));
         cboSide.setPreferredSize(new java.awt.Dimension(200, 30));
+        cboSide.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboSideItemStateChanged(evt);
+            }
+        });
         jPanel6.add(cboSide);
 
         jPanel4.add(jPanel6, java.awt.BorderLayout.NORTH);
@@ -136,6 +142,82 @@ public class PnlStudentManager extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+
+    private void cboSideItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSideItemStateChanged
+        // TODO add your handling code here:
+
+        String selectedValue = cboSide.getSelectedItem().toString();
+        String nameSever = "";
+        try {
+            nameSever = SinhVienRepository.nameSever();
+        } catch (SQLException ex) {
+            Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (selectedValue.strip().equals("CS1")) {
+
+            if (nameSever.strip().equals("LAPTOP-5MDDM7K6\\MSSQLSERVER01")) {
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                    SinhVienController.renderData(PnlStudentManager.this, true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                    SinhVienController.renderData(PnlStudentManager.this, false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        } else {
+            if (nameSever.strip().equals("LAPTOP-5MDDM7K6\\MSSQLSERVER02")) {
+
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                    SinhVienController.renderData(PnlStudentManager.this, true);
+                    System.out.println(cboSide.getSelectedItem().toString());
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                    SinhVienController.renderData(PnlStudentManager.this, false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+
+
+    }//GEN-LAST:event_cboSideItemStateChanged
 
 //    Sự kiện con cuộn bảng
     public void scrollRectToVisible(int index) {
@@ -208,9 +290,9 @@ public class PnlStudentManager extends javax.swing.JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    
-                    ValidateFormService.validateFrmStudentInfoAdd(pnlStudentInfo , objectActions);
-                    
+
+                    ValidateFormService.validateFrmStudentInfoAdd(pnlStudentInfo, objectActions);
+
                     Lop selectedLop = (Lop) pnlStudentInfo.getComboboxClass().getSelectedItem();
                     SinhVien sv = new SinhVien(pnlStudentInfo.getTxtMaSV().getText(), pnlStudentInfo.getTxtHo().getText(), pnlStudentInfo.getTxtTen().getText(), pnlStudentInfo.getTxtNgaySinh().getText(), pnlStudentInfo.getTxtDiaChi().getText(), selectedLop.getMaLop());
                     int objectActionSize = objectActions.size();
@@ -278,10 +360,9 @@ public class PnlStudentManager extends javax.swing.JPanel {
         pnlManageBar.getBtnUpdate().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 try {
-                    
-                    ValidateFormService.validateFrmStudentInfoUpdate(pnlStudentInfo , masv);
-                    
-                    
+
+                    ValidateFormService.validateFrmStudentInfoUpdate(pnlStudentInfo, masv);
+
                     Lop selectedLop = (Lop) pnlStudentInfo.getComboboxClass().getSelectedItem();
 
                     SinhVien student = new SinhVien(pnlStudentInfo.getTxtMaSV().getText(), pnlStudentInfo.getTxtHo().getText(), pnlStudentInfo.getTxtTen().getText(), pnlStudentInfo.getTxtNgaySinh().getText(), pnlStudentInfo.getTxtDiaChi().getText(), selectedLop.getMaLop());
@@ -370,14 +451,12 @@ public class PnlStudentManager extends javax.swing.JPanel {
 //        Xử lý sự kiện nút delete        
         pnlManageBar.getBtnDelete().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                
+
                 try {
                     Lop selectedLop = (Lop) pnlStudentInfo.getComboboxClass().getSelectedItem();
 
                     SinhVien student = new SinhVien(pnlStudentInfo.getTxtMaSV().getText(), pnlStudentInfo.getTxtHo().getText(), pnlStudentInfo.getTxtTen().getText(), pnlStudentInfo.getTxtNgaySinh().getText(), pnlStudentInfo.getTxtDiaChi().getText(), selectedLop.getMaLop());
-                    
-                   
-                    
+
                     int objectActionIndex = -1;
                     for (int i = 0; i < objectActions.size(); ++i) {
                         SinhVien sv = (SinhVien) objectActions.get(i).getObjects().get(0);
@@ -438,7 +517,7 @@ public class PnlStudentManager extends javax.swing.JPanel {
                 pnlManageBar.getBtnDelete().setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         });
-        
+
 //        Xử lý sự kiện nút save      
         pnlManageBar.getBtnSave().addMouseListener(new MouseAdapter() {
             @Override
@@ -508,7 +587,7 @@ public class PnlStudentManager extends javax.swing.JPanel {
                     ObjectAction objectActionUndo = undoRedo.undo();
                     SinhVien student = (SinhVien) objectActionUndo.getObjects().get(0);
                     Object[] row = {
-                        student.getMaSV(), student.getHo(), student.getTen(),student.getNgaySinhStr(),
+                        student.getMaSV(), student.getHo(), student.getTen(), student.getNgaySinhStr(),
                         student.getDiaChi(), student.getMaLop()};
                     objectActionExecute(objectActionUndo, row);
 
@@ -553,7 +632,7 @@ public class PnlStudentManager extends javax.swing.JPanel {
                     ObjectAction objectActionRedo = undoRedo.redo();
                     SinhVien student = (SinhVien) objectActionRedo.getObjects().get(0);
                     Object[] row = {
-                        student.getMaSV(), student.getHo(), student.getTen(),student.getNgaySinhStr(),
+                        student.getMaSV(), student.getHo(), student.getTen(), student.getNgaySinhStr(),
                         student.getDiaChi(), student.getMaLop()};
 
                     objectActionExecute(objectActionRedo, row);
@@ -590,7 +669,6 @@ public class PnlStudentManager extends javax.swing.JPanel {
             }
         });
 
-        
 //        Xử lý sự kiện nút reload  
         pnlManageBar.getBtnReload().addMouseListener(new MouseAdapter() {
             @Override
@@ -670,7 +748,6 @@ public class PnlStudentManager extends javax.swing.JPanel {
             }
         });
     }
-    
 
 //    Methods
     public void initMyComponents(String tabName) {
@@ -729,10 +806,10 @@ public class PnlStudentManager extends javax.swing.JPanel {
     //hàm này dùng để khi hiển dữ liệu lên các filed 
     public void fillStudentField(Object object) {
         SinhVien student = (SinhVien) object;
-        
+
         //khi nhấn vào bảng thì lưu mã sinh viên vào đây
         masv = student.getMaSV();
-        
+
         pnlStudentInfo.getTxtMaSV().setText(student.getMaSV());
         pnlStudentInfo.getTxtHo().setText(student.getHo());
         pnlStudentInfo.getTxtTen().setText(student.getTen());
@@ -756,7 +833,6 @@ public class PnlStudentManager extends javax.swing.JPanel {
 
         return object;
     }
-
 
     //hàm này dùng để để undo
 //    Getters and setters

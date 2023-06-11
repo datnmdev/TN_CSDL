@@ -28,7 +28,7 @@ public class DatabaseConnectors implements ResetInterface {
             Properties prop = new Properties();
             prop.load(input);
             SQLServerDataSource sqlServerDataSource = new SQLServerDataSource();
-            sqlServerDataSource.setURL(prop.getProperty("DESKTOP-N52G36K"));
+            sqlServerDataSource.setURL(prop.getProperty("LAPTOP-5MDDM7K6"));
             Account account = new Account();
             account.setLoginName(sqlServerDataSource.getUser());
             databasePubConnector = new DatabaseConnector(sqlServerDataSource, account);

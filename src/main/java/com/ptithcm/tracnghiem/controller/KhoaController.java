@@ -21,5 +21,12 @@ public class KhoaController {
         String macs = CoSoRepository.findMacs();
         pnlWorkSection.setMacs(macs);
     }
+    
+     public static void renderData(PnlKhoaManager pnlWorkSection , boolean check) throws SQLException {
+        pnlWorkSection.setObjectActions(new KhoaRepository().findAllOb(check));
+        pnlWorkSection.fillTableForTeacher(pnlWorkSection.getObjectActions());
+        String macs = CoSoRepository.findMacs();
+        pnlWorkSection.setMacs(macs);
+    }
 
 }

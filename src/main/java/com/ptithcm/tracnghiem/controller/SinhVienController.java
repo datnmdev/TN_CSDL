@@ -22,5 +22,12 @@ public class SinhVienController {
         pnlWorkSection.fillTableForTeacher(pnlWorkSection.getObjectActions());
         pnlWorkSection.getPnlStudentInfo().fillLopComboBox(LopService.getAllClassrooms());
     }
+    
+     public static void renderData(PnlStudentManager pnlWorkSection , boolean check) throws SQLException {
+        
+        pnlWorkSection.setObjectActions(new SinhVienService().getAllSinhVien(check));
+        pnlWorkSection.fillTableForTeacher(pnlWorkSection.getObjectActions());
+        pnlWorkSection.getPnlStudentInfo().fillLopComboBox(LopService.getAllClassrooms());
+    }
 
 }

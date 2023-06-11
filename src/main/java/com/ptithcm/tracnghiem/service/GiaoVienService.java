@@ -36,6 +36,11 @@ public class GiaoVienService {
         return new GiaoVienRepository().findAll();
     }
      
+    //hàm này lấy toàn bộ dữ liệu code by hai mai
+     public List<Object> getAllGiaoVien(boolean check) throws SQLException {
+        return new GiaoVienRepository().findAll(check);
+    }
+     
     //hàm này dùng để kết nối 
      public static void saveAll(List<ObjectAction> objectActions) throws SQLException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
         SQLServerDataTable sqlServerDataTable = SQLConvert.toT_GIAOVIEN(Filter.getChangedObjectActions(objectActions));

@@ -9,14 +9,15 @@ package com.ptithcm.tracnghiem.entity;
  * @author MINHDAT
  */
 public class Khoa {
+
     private String maKH;
     private String tenKH;
     private String maCS;
-    
+
 //    Constructors
     public Khoa() {
     }
-    
+
     public Khoa(String maKH, String tenKH) {
         this.maKH = maKH;
         this.tenKH = tenKH;
@@ -26,6 +27,10 @@ public class Khoa {
         this.maKH = maKH;
         this.tenKH = tenKH;
         this.maCS = maCS;
+    }
+
+    public String toString() {
+        return maKH + " - " + tenKH;
     }
 
 //    Getters and setters
@@ -52,5 +57,5 @@ public class Khoa {
     public void setMaCS(String maCS) {
         this.maCS = maCS;
     }
-    
+
 }

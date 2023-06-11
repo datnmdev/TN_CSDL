@@ -17,7 +17,11 @@ import java.util.List;
  */
 public class SinhVienService {
     public List<Object> getAllSinhVien() throws SQLException {
-        return new SinhVienRepository().findAll();
+        return new SinhVienRepository().findAll1();
+    }
+    
+     public List<Object> getAllSinhVien(boolean check) throws SQLException {
+        return new SinhVienRepository().findAllForSide(check);
     }
     
     public static SinhVien getStudent(String maSV) throws SQLException {

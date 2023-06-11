@@ -5,6 +5,7 @@
 package com.ptithcm.tracnghiem.repository;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataTable;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.ptithcm.tracnghiem.entity.GiaoVien;
 import com.ptithcm.tracnghiem.global_variable.LoginVariables;
 import com.ptithcm.tracnghiem.model.dto.GiaoVienDto;
@@ -21,21 +22,22 @@ import java.util.List;
  * @author MINHDAT
  */
 public class GiaoVienRepository implements SelectDataRepositoryInterface {
+
     @Override
     public Object find(Object object) throws SQLException {
         String sql = "{call SP_LAYTHONGTINGIAOVIEN(?)}";
-        
+
         try (Connection connection = LoginVariables.databaseConnector.getConnection();) {
             CallableStatement cstm = connection.prepareCall(sql);
             cstm.setString(1, String.valueOf(object));
             ResultSet rs = cstm.executeQuery();
-            
-           Object teacher = null;
+
+            Object teacher = null;
             while (rs.next()) {
-                teacher = 
-                        new GiaoVien(
-                                rs.getString(1), rs.getString(2), 
-                                rs.getString(3), rs.getString(4), 
+                teacher
+                        = new GiaoVien(
+                                rs.getString(1), rs.getString(2),
+                                rs.getString(3), rs.getString(4),
                                 rs.getString(5)
                         );
             }
@@ -45,18 +47,16 @@ public class GiaoVienRepository implements SelectDataRepositoryInterface {
 
     @Override
     public List<Object> findAll() throws SQLException {
-        String sql = "SELECT * FROM GIAOVIEN";
-        
-        try (Connection cnn = LoginVariables.databaseConnector.getConnection();
-            Statement stmt = cnn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);) {
-            
+        String sql = "SELECT * FROM GIAOVIEN GV,KHOA KH WHERE GV.MAKH = KH.MAKH";
+
+        try (Connection cnn = LoginVariables.databaseConnector.getConnection(); Statement stmt = cnn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
+
             List<Object> teachers = new ArrayList<>();
             while (rs.next()) {
                 teachers.add(
                         new GiaoVien(
-                                rs.getString(1), rs.getString(2), 
-                                rs.getString(3), rs.getString(4), 
+                                rs.getString(1), rs.getString(2),
+                                rs.getString(3), rs.getString(4),
                                 rs.getString(5)
                         )
                 );
@@ -64,7 +64,33 @@ public class GiaoVienRepository implements SelectDataRepositoryInterface {
             return teachers;
         }
     }
-    
+
+    public List<Object> findAll(boolean check) throws SQLException {
+        //String sql = "SELECT * FROM GIAOVIEN GV,KHOA KH WHERE GV.MAKH = KH.MAKH";
+
+        String sql = "";
+        if (check == true) {
+            sql = "SELECT * FROM GIAOVIEN GV,KHOA KH WHERE GV.MAKH = KH.MAKH";
+        } else {
+            sql = "SELECT * FROM link1.TN_CSDLPT.dbo.GIAOVIEN GV,link1.TN_CSDLPT.dbo.KHOA KH WHERE GV.MAKH = KH.MAKH;";
+        }
+
+        try (Connection cnn = LoginVariables.databaseConnector.getConnection(); Statement stmt = cnn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
+
+            List<Object> teachers = new ArrayList<>();
+            while (rs.next()) {
+                teachers.add(
+                        new GiaoVien(
+                                rs.getString(1), rs.getString(2),
+                                rs.getString(3), rs.getString(4),
+                                rs.getString(5)
+                        )
+                );
+            }
+            return teachers;
+        }
+    }
+
     //hàm này dùng để lấy toàn bộ giáo viên từ database by hải mai
     public static List<GiaoVienDto> getAllGiaoVien() {
         String sql = "SELECT * FROM GIAOVIEN";
@@ -119,4 +145,21 @@ public class GiaoVienRepository implements SelectDataRepositoryInterface {
         }
         return false;
     }
+
+    //CÁI HÀM NÀY DÙNG ĐỂ NGĂN KHÔNG CHO TẠO TÀI KHOẢN
+    public static boolean checkMagvForCreat(String magv) throws SQLServerException, SQLException {
+        String sql = "{call SP_KIEMTRAGVFORLOGIN(?)}";
+        try (Connection connection = LoginVariables.databaseConnector.getConnection();) {
+            CallableStatement cstm = connection.prepareCall(sql);
+            cstm.setObject(1, magv);
+            ResultSet rs = cstm.executeQuery();
+            if (rs.next()) {
+                int result = rs.getInt(1);
+                return result == 1;
+            }
+        }
+        return false;
+
+    }
+
 }
