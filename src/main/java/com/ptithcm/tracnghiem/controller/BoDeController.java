@@ -4,6 +4,7 @@
  */
 package com.ptithcm.tracnghiem.controller;
 
+import com.ptithcm.tracnghiem.global_variable.LoginVariables;
 import com.ptithcm.tracnghiem.model.dto.ObjectAction;
 import com.ptithcm.tracnghiem.service.BoDeService;
 import com.ptithcm.tracnghiem.service.MonHocService;
@@ -27,6 +28,7 @@ public class BoDeController {
             pnlWorkSection.fillDataTable(pnlWorkSection.getObjectActions());
             ((PnlQuestionInfo) pnlWorkSection.getPnlObjectInfo()).fillSubjectComboBox(new MonHocService().getAllSubjects());
             ((PnlQuestionInfo) pnlWorkSection.getPnlObjectInfo()).fillLevelComboBox(new BoDeService().getLevelList());
+            ((PnlQuestionInfo) pnlWorkSection.getPnlObjectInfo()).getTxtTeacherInfo().setText(LoginVariables.databaseConnector.getAccount().getUsername());
         } catch (SQLException ex) {
             MessageBox.showErrorBox(ex.getClass().getName(), ex.getMessage());
         }

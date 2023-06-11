@@ -16,7 +16,9 @@ import com.ptithcm.tracnghiem.service.SinhVienService;
 import com.ptithcm.tracnghiem.service.ThiService;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -210,6 +212,11 @@ public class PnlExamManageBar extends javax.swing.JPanel {
         btnStart.setText("Bắt đầu thi");
         btnStart.setEnabled(false);
         btnStart.setPreferredSize(new java.awt.Dimension(120, 34));
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         pnlEastContainer.add(btnStart, gridBagConstraints);
@@ -229,7 +236,12 @@ public class PnlExamManageBar extends javax.swing.JPanel {
                     ((SinhVien) cboFullName.getSelectedItem()).getMaSV()
                 );
                 if (giaoVienDangKyDtos != null) {
-                    fillSubjectComboBox(ThiService.getAllSubject(giaoVienDangKyDtos));
+                    List<MonHoc> subjects = ThiService.getAllSubject(giaoVienDangKyDtos);
+                    if (subjects.size() == 0) {
+                        MessageBox.showWarningBox("Thông báo", "Hiện tại chưa có lịch thi nào");
+                    } else {
+                        fillSubjectComboBox(subjects);
+                    }
                 }
             }
         } catch (SQLException ex) {
@@ -270,13 +282,28 @@ public class PnlExamManageBar extends javax.swing.JPanel {
     private void cboTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTimesActionPerformed
         try {
             fillExamInfos();
-            btnStart.setEnabled(true);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            Date now = new Date(); 
+            if (LoginVariables.databaseConnector.getAccount().getGroupName().equals("SINHVIEN")) {
+                if (now.getTime() >= simpleDateFormat.parse(cboDateTime.getSelectedItem().toString()).getTime() && now.getTime() < simpleDateFormat.parse(cboDateTime.getSelectedItem().toString()).getTime() + Integer.parseInt(txtDuration.getText())*60*1000) {
+                    btnStart.setEnabled(true);
+                } else {
+                    btnStart.setEnabled(false);
+                }
+            } else {
+                btnStart.setEnabled(true);
+            }
+            
         } catch (SQLException ex) {
             MessageBox.showErrorBox(ex.getClass().getName(), ex.getMessage());
         } catch (ParseException ex) {
             MessageBox.showErrorBox(ex.getClass().getName(), ex.getMessage());
         }
     }//GEN-LAST:event_cboTimesActionPerformed
+
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStartActionPerformed
 
 //    Methods
     public void renderData() {
@@ -290,16 +317,21 @@ public class PnlExamManageBar extends javax.swing.JPanel {
     public void fillClassroomCodeComboBox() throws SQLException {
         switch (LoginVariables.databaseConnector.getAccount().getGroupName()) {
             case "GIANGVIEN": {
-                List<Lop> classrooms = new ArrayList<>(GiaoVienDangKyService.getAllRegisteredClassroom());
+                System.out.println(LoginVariables.databaseConnector.getAccount().getUsername());
+                List<Lop> classrooms = new ArrayList<>(GiaoVienDangKyService.getRegisteredClassroomByTeacherCode(LoginVariables.databaseConnector.getAccount().getUsername().trim()));
                 List<String> classroomCodes = new ArrayList<>();
                 classrooms.forEach(classroom -> {
                     classroomCodes.add(classroom.getMaLop());
                 });
 
-                DefaultComboBoxModel model = new DefaultComboBoxModel();
-                model.addAll(classroomCodes);
-                cboClassroomCode.setModel(model);
-                cboClassroomCode.setSelectedIndex(0);
+                if (classroomCodes.size() == 0) {
+                    MessageBox.showWarningBox("Thông báo", "Hiện chưa có lịch thi nào");
+                } else {
+                    DefaultComboBoxModel model = new DefaultComboBoxModel();
+                    model.addAll(classroomCodes);
+                    cboClassroomCode.setModel(model);
+                    cboClassroomCode.setSelectedIndex(0);
+                }
                 break;
             }
             case "SINHVIEN": {

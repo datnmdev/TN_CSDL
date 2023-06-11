@@ -65,7 +65,12 @@ public class ObjectAction {
                     action = lastStatus.getName();
             }
         } else {
-            action = ActionStatusEnum.INSERT.getName();
+            if(status.get(status.size()-1).equals(ActionStatusEnum.DELETE)){
+                 action = ActionStatusEnum.INSERT.getName();
+                 System.out.println("001ạhfkahsdkfjhasjkdfhkjsa");
+            } else{
+                action = ActionStatusEnum.NO_ACTION.getName();
+            }
         }
         return action;
     }

@@ -25,6 +25,10 @@ public class LopService {
         return toClassrooms(new LopRepository().findAll());
     }
     
+    public static List<Lop> getAllClassroomByClassroomCode(String maKH) throws SQLException {
+        return getAllClassrooms().stream().filter(lop -> lop.getMaKH().equals(maKH)).toList();
+    }
+    
     public static List<Lop> toClassrooms(List<Object> objects) {
         List<Lop> classrooms = new ArrayList<>();
         objects.forEach(object -> classrooms.add((Lop) object));

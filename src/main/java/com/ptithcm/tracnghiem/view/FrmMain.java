@@ -166,6 +166,22 @@ public class FrmMain extends javax.swing.JFrame {
             }
         });
         
+        pnlMenu.getBtnReportMarkTable().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String tabName = pnlMenu.getBtnReportMarkTable().getName();
+                int tabIndex = tabbedPaneWorkspace.indexOfTab(tabName);
+                if (tabIndex != -1) {
+                    tabbedPaneWorkspace.setSelectedIndex(tabIndex);
+                } else {
+                    PnlReports pnlReports = new PnlReports(tabName);
+                    tabbedPaneWorkspace.addTab(tabName, pnlReports);
+                    tabbedPaneWorkspace.setTitleAt(tabbedPaneWorkspace.getTabCount()-1, tabName);
+                    tabbedPaneWorkspace.setSelectedIndex(tabbedPaneWorkspace.getTabCount()-1);
+                }
+            }
+        });
+        
         pnlMenu.getBtnTeacherManage().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

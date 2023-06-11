@@ -206,11 +206,13 @@ public class PnlMenu extends javax.swing.JPanel {
         tabReport.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         btnReportMarkTable.setBackground(new java.awt.Color(255, 255, 255));
+        btnReportMarkTable.setName("Xem bảng điểm"); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/48x48/table.png"))); // NOI18N
         jLabel13.setText("Bảng điểm");
+        jLabel13.setName(""); // NOI18N
         btnReportMarkTable.add(jLabel13);
 
         tabReport.add(btnReportMarkTable);

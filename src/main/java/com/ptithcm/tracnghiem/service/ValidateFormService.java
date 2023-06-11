@@ -71,20 +71,29 @@ public class ValidateFormService {
     }
 
 //    Kiểm tra các trường đầu vào của form nhập liệu giáo viên đăng ký
-    public static void validateFrmCalendarExamRegister(PnlTeacherRegisterInfo pnlTeacherRegisterInfo, JTable jTable) throws InvalidInputException, ParseException {
+    public static void validateFrmCalendarExamRegister(PnlTeacherRegisterInfo pnlTeacherRegisterInfo, JTable jTable, String evenType) throws InvalidInputException, ParseException {
         DefaultTableModel model = (DefaultTableModel) jTable.getModel();
 
 //        Kiểm tra khóa chính
         int modelSize = model.getRowCount();
-        for (int i = 0; i < modelSize; ++i) {
-            if (model.getValueAt(i, 1).toString().equals(((Lop) pnlTeacherRegisterInfo.getCboClassroomCode().getSelectedItem()).getMaLop())
+        if (evenType.equals("add")) {
+            int soLanThi = 0;
+            for (int i = 0; i < modelSize; ++i) {
+                if (model.getValueAt(i, 1).toString().equals(((Lop) pnlTeacherRegisterInfo.getCboClassroomCode().getSelectedItem()).getMaLop())
                     && model.getValueAt(i, 2).toString().equals(((MonHoc) pnlTeacherRegisterInfo.getCboSubject().getSelectedItem()).getMaMH())) {
-                if (model.getValueAt(i, 5).toString().equals(String.valueOf(pnlTeacherRegisterInfo.getCboTimes().getSelectedItem()))) {
-                    throw new InvalidInputException("Lớp này đã đăng ký môn học với lần thi này rồi!");
+                    ++soLanThi;
                 }
-            } else {
-                if (Short.parseShort(String.valueOf(pnlTeacherRegisterInfo.getCboTimes().getSelectedItem())) == 2) {
-                    throw new InvalidInputException("Lớp này chưa đăng ký thi môn này lần nào. Vui lòng chọn lần thi là 1!");
+            }
+            
+            if (soLanThi == 2) {
+                throw new InvalidInputException("Lớp này đã thi môn này 2 lần rồi!");
+            } else if (soLanThi == 1) {
+                if (Short.parseShort(pnlTeacherRegisterInfo.getCboTimes().getSelectedItem().toString()) == 1) {
+                    throw new InvalidInputException("Lớp này đã có đăng ký thi môn này với lần thi này rồi");
+                }
+            } else if (soLanThi == 0) {
+                if (Short.parseShort(pnlTeacherRegisterInfo.getCboTimes().getSelectedItem().toString()) == 2) {
+                    throw new InvalidInputException("Lớp này chưa thi môn này lần nào. Vui lòng chọn lần thi là 1");
                 }
             }
         }
@@ -99,7 +108,7 @@ public class ValidateFormService {
             for (int i = 0; i < modelSize; ++i) {
                 if (model.getValueAt(i, 1).toString().equals(((Lop) pnlTeacherRegisterInfo.getCboClassroomCode().getSelectedItem()).getMaLop())
                         && model.getValueAt(i, 2).toString().equals(((MonHoc) pnlTeacherRegisterInfo.getCboSubject().getSelectedItem()).getMaMH())
-                        && model.getValueAt(i, 5).toString().equals(String.valueOf(pnlTeacherRegisterInfo.getCboTimes().getSelectedItem()))) {
+                        && Short.parseShort(model.getValueAt(i, 5).toString())  ==  Short.parseShort(pnlTeacherRegisterInfo.getCboTimes().getSelectedItem().toString()) - 1) {
                     if (pnlTeacherRegisterInfo.getDateTime().getDateTime().getTime().getTime() <= simpleDateFormat.parse(model.getValueAt(i, 4).toString()).getTime()) {
                         throw new InvalidInputException("Thời gian bắt đầu thi của lần 2 luôn phải lớn hơn lần 1!");
                     }

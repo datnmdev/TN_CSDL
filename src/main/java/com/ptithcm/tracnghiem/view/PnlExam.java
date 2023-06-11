@@ -22,7 +22,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JViewport;
@@ -131,21 +134,32 @@ public class PnlExam extends javax.swing.JPanel {
                         clockThread = new MyThread() {
                             @Override
                             public void run() {
-                                int seconds = Short.parseShort(pnlExamManageBar.getTxtDuration().getText()) * 60;
-                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-                                while (seconds >= 0 && !isStop()) {
-                                    LocalTime time = LocalTime.ofSecondOfDay(seconds);
-                                    String formattedTime = time.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-                                    lblClock.setText(formattedTime);
-                                    try {
-                                        sleep(1000);
-                                    } catch (InterruptedException ex) {
-                                        MessageBox.showErrorBox(ex.getClass().getName(), ex.getMessage());
+                                try {
+                                    int seconds = 0;
+                                    if (LoginVariables.databaseConnector.getAccount().getGroupName().equals("SINHVIEN")) {
+                                        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                                        seconds = (int) (((simpleDateFormat1.parse(pnlExamManageBar.getCboDateTime().getSelectedItem().toString()).getTime() + Short.parseShort(pnlExamManageBar.getTxtDuration().getText()) * 60 * 1000) - new Date().getTime())/1000);
+                                    } else {
+                                        seconds = Short.parseShort(pnlExamManageBar.getTxtDuration().getText()) * 60;
                                     }
-                                    --seconds;
-                                }
-                                if (!isStop()) {
-                                    nopBai(frmMain.getTabbedPaneWorkspace());
+                                    
+                                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+                                    while (seconds >= 0 && !isStop()) {
+                                        LocalTime time = LocalTime.ofSecondOfDay(seconds);
+                                        String formattedTime = time.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+                                        lblClock.setText(formattedTime);
+                                        try {
+                                            sleep(1000);
+                                        } catch (InterruptedException ex) {
+                                            MessageBox.showErrorBox(ex.getClass().getName(), ex.getMessage());
+                                        }
+                                        --seconds;
+                                    }
+                                    if (!isStop()) {
+                                        nopBai(frmMain.getTabbedPaneWorkspace());
+                                    }
+                                } catch (ParseException ex) {
+                                    Logger.getLogger(PnlExam.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
                         };

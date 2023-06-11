@@ -4,6 +4,7 @@
  */
 package com.ptithcm.tracnghiem.view;
 
+import com.ptithcm.tracnghiem.global_variable.LoginVariables;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -46,7 +47,14 @@ public class PnlReports extends javax.swing.JPanel {
     public void initMyComponents() {
         switch (tabName) {
             case "Xem kết quả thi":
-                add(pnlOption = new PnlReviewExamResultOption(PnlReportSection), BorderLayout.NORTH);
+                if (LoginVariables.databaseConnector.getAccount().getGroupName().equals("SINHVIEN")) {
+                    add(pnlOption = new PnlReviewExamResultOption(PnlReportSection), BorderLayout.NORTH);
+                } else if (LoginVariables.databaseConnector.getAccount().getGroupName().equals("GIANGVIEN")) {
+                    add(pnlOption = new PnlReviewExamResultOptionForTeacher(PnlReportSection),BorderLayout.NORTH);
+                }
+                break;
+            case "Xem bảng điểm":
+                add(pnlOption = new PnlReviewReportBangDiem(PnlReportSection), BorderLayout.NORTH);
                 break;
             default:
                 throw new AssertionError();

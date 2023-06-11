@@ -15,6 +15,7 @@ C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\service\BoDeService.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\view\FrmMain.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\controller\LogoutController.java
+C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\view\PnlReviewReportBangDiem.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\controller\BoDeController.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\model\dto\GiaoVienDto.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\view\JDateTimePicker.java
@@ -88,6 +89,7 @@ C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\service\GiaoVienDangKyService.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\view\PnlStudentInfo.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\service\LogoutService.java
+C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\view\PnlReviewExamResultOptionForTeacher.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\view\PnlReviewExamResultOption.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\service\SQLConvert.java
 C:\Users\MINHDAT\Documents\NetBeansProjects\TRACNGHIEM\src\main\java\com\ptithcm\tracnghiem\view\PnlExam.java

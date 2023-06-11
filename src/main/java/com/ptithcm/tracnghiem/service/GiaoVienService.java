@@ -17,15 +17,15 @@ import java.util.List;
  * @author MINHDAT
  */
 public class GiaoVienService {
-    public GiaoVien getTeacher(String maGV) throws SQLException {
+    public static GiaoVien getTeacher(String maGV) throws SQLException {
         return (GiaoVien) (new GiaoVienRepository().find(maGV));
     }
     
-    public List<GiaoVien> getAllTeachers() throws SQLException {
-        return  toTeachers(new GiaoVienRepository().findAll());
+    public static List<GiaoVien> getAllTeachers() throws SQLException {
+        return toTeachers(new GiaoVienRepository().findAll());
     }
     
-    public List<GiaoVien> toTeachers(List<Object> objects) {
+    public static List<GiaoVien> toTeachers(List<Object> objects) {
         List<GiaoVien> teachers = new ArrayList<>();
         objects.forEach(object -> teachers.add((GiaoVien) object));
         return teachers;

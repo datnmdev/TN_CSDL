@@ -275,7 +275,7 @@ public class PnlWorkSection extends javax.swing.JPanel {
                             PnlTeacherRegisterInfo pnlTeacherRegisterInfo = (PnlTeacherRegisterInfo) pnlObjectInfo;
 
 //                            Validate form 
-                            ValidateFormService.validateFrmCalendarExamRegister(pnlTeacherRegisterInfo, tblData);
+                            ValidateFormService.validateFrmCalendarExamRegister(pnlTeacherRegisterInfo, tblData, "add");
 
 //                            Xử lý dữ liệu và thực hiện thao tác thêm
                             GiaoVienDangKy gvdk
@@ -415,7 +415,7 @@ public class PnlWorkSection extends javax.swing.JPanel {
                             PnlTeacherRegisterInfo pnlTeacherRegisterInfo = (PnlTeacherRegisterInfo) pnlObjectInfo;
 
 //                            Validate form
-                            ValidateFormService.validateFrmCalendarExamRegister(pnlTeacherRegisterInfo, tblData);
+                            ValidateFormService.validateFrmCalendarExamRegister(pnlTeacherRegisterInfo, tblData, "update");
 
 //                            Xử lý dữ liệu và thực hiện thao tác cập nhật
                             GiaoVienDangKy gvdk = pnlTeacherRegisterInfo.getGVDKData(objectActions);
