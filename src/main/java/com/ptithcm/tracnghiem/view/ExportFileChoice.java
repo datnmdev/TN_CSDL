@@ -14,6 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
@@ -160,7 +162,19 @@ public class ExportFileChoice extends javax.swing.JDialog {
             public void mouseClicked(MouseEvent e) {
                 try {
                     String path = new FileChooser().getPathFromFileChooser("Word file", ".docx");
-                    switch (tabName) {
+
+                    // cái này dùng để lấy mã khoa để in ra lớp thì biết lớp thuộc khoa nào 
+                    String makh = "";
+                    String newTabName = "";
+
+                    if (tabName.contains("Quản lý lớp thuộc khoa ")) {
+                        makh = tabName.replace("Quản lý lớp thuộc khoa ", "");
+                        newTabName = "Quản lý lớp";
+                    } else {
+                        newTabName = tabName;
+                    }
+
+                    switch (newTabName.strip()) {
                         case "Quản lý bộ đề": {
                             String title = "Danh sách các câu hỏi";
                             String info = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
@@ -172,6 +186,7 @@ public class ExportFileChoice extends javax.swing.JDialog {
                             MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file word thành công!");
                             break;
                         }
+
                         case "Đăng ký thi": {
                             String title = "Danh sách đăng ký thi";
                             String info = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
@@ -183,6 +198,69 @@ public class ExportFileChoice extends javax.swing.JDialog {
                             MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file word thành công!");
                             break;
                         }
+
+                        case "Quản lý giảng viên": {
+                            String title = "Danh sách các giảng viên";
+                            String info = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            ExportFile.exportFileWord(title, info, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file word thành công!");
+                            break;
+                        }
+
+                        case "Quản lý sinh viên": {
+                            String title = "Danh sách các sinh viên";
+                            String info = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            ExportFile.exportFileWord(title, info, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file word thành công!");
+                            break;
+                        }
+
+                        case "Quản lý môn học": {
+                            String title = "Danh sách các môn học";
+                            String info = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            ExportFile.exportFileWord(title, info, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file word thành công!");
+                            break;
+                        }
+
+                        case "Quản lý khoa": {
+                            String title = "Danh sách các khoa";
+                            String info = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            ExportFile.exportFileWord(title, info, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file word thành công!");
+                            break;
+                        }
+
+                        case "Quản lý lớp": {
+                            
+                            System.out.println(makh + " ádnfjndsfjnkasdjfn");
+                            String title = "Danh sách các lớp của khoa " + makh;
+                            String info = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            ExportFile.exportFileWord(title, info, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file word thành công!");
+                            break;
+                        }
+
                         default:
                             throw new AssertionError();
                     }
@@ -256,7 +334,19 @@ public class ExportFileChoice extends javax.swing.JDialog {
             public void mouseClicked(MouseEvent e) {
                 try {
                     String path = new FileChooser().getPathFromFileChooser("PDF file", ".pdf");
-                    switch (tabName) {
+
+                    // cái này dùng để lấy mã khoa để in ra lớp thì biết lớp thuộc khoa nào 
+                    String makh = "";
+                    String newTabName = "";
+
+                    if (tabName.contains("Quản lý lớp thuộc khoa ")) {
+                        makh = tabName.replace("Quản lý lớp thuộc khoa ", "");
+                        newTabName = "Quản lý lớp";
+                    } else {
+                        newTabName = tabName;
+                    }
+
+                    switch (newTabName.strip()) {
                         case "Quản lý bộ đề": {
                             String title = "Danh sách các câu hỏi";
                             String author = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
@@ -268,6 +358,7 @@ public class ExportFileChoice extends javax.swing.JDialog {
                             MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file pdf thành công!");
                             break;
                         }
+
                         case "Đăng ký thi": {
                             String title = "Danh sách đăng ký thi";
                             String author = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
@@ -279,6 +370,70 @@ public class ExportFileChoice extends javax.swing.JDialog {
                             MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file pdf thành công!");
                             break;
                         }
+
+                        case "Quản lý giảng viên": {
+                            String title = "Danh sách giảng viên";
+                            String author = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            
+                            
+                            
+                            ExportFile.exportFilePDF(title, author, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file pdf thành công!");
+                            break;
+                        }
+
+                        case "Quản lý sinh viên": {
+                            String title = "Danh sách sinh viên";
+                            String author = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            ExportFile.exportFilePDF(title, author, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file pdf thành công!");
+                            break;
+                        }
+
+                        case "Quản lý môn học": {
+                            String title = "Danh sách môn học";
+                            String author = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            ExportFile.exportFilePDF(title, author, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file pdf thành công!");
+                            break;
+                        }
+
+                        case "Quản lý khoa": {
+                            String title = "Danh sách khoa";
+                            String author = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            ExportFile.exportFilePDF(title, author, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file pdf thành công!");
+                            break;
+                        }
+
+                        case "Quản lý lớp": {
+                            String title = "Danh sách các lớp của khoa " + makh;
+                            String author = String.format("Mã giáo viên: %s  -  Họ và tên: %s  -  Thuộc nhóm: %s",
+                                    LoginVariables.databaseConnector.getAccount().getUsername(),
+                                    LoginVariables.databaseConnector.getAccount().getFullName(),
+                                    LoginVariables.databaseConnector.getAccount().getGroupName()
+                            );
+                            ExportFile.exportFilePDF(title, author, jTable, path);
+                            MessageBox.showConfirmSuccessBox("Thông báo", "Xuất file pdf thành công!");
+                            break;
+                        }
+
                         default:
                             throw new AssertionError();
                     }
@@ -290,19 +445,22 @@ public class ExportFileChoice extends javax.swing.JDialog {
             }
 
             @Override
-            public void mouseMoved(MouseEvent e) {
+            public void mouseMoved(MouseEvent e
+            ) {
                 btnExportPDF.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 lblPDF.setFont(new Font("Segoe UI", 1, 12));
                 lblPDF.setForeground(Color.RED);
             }
 
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(MouseEvent e
+            ) {
                 btnExportPDF.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 lblPDF.setFont(new Font("Segoe UI", 0, 12));
                 lblPDF.setForeground(Color.BLACK);
             }
-        });
+        } 
+        );
 
         btnExportPDF.addMouseMotionListener(new MouseMotionAdapter() {
             @Override

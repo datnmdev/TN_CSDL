@@ -5,6 +5,7 @@
 package com.ptithcm.tracnghiem.view;
 
 import com.ptithcm.tracnghiem.controller.GiangVienController;
+import com.ptithcm.tracnghiem.controller.SinhVienController;
 import com.ptithcm.tracnghiem.entity.GiaoVien;
 import com.ptithcm.tracnghiem.entity.Khoa;
 import com.ptithcm.tracnghiem.exception.InvalidInputException;
@@ -14,6 +15,8 @@ import com.ptithcm.tracnghiem.model.dto.ActionStatusEnum;
 import com.ptithcm.tracnghiem.model.dto.GiaoVienDto;
 import com.ptithcm.tracnghiem.model.dto.ObjectAction;
 import com.ptithcm.tracnghiem.repository.CreateLoginRepository;
+import com.ptithcm.tracnghiem.repository.GiaoVienRepository;
+import com.ptithcm.tracnghiem.repository.SinhVienRepository;
 import com.ptithcm.tracnghiem.service.GiaoVienService;
 import com.ptithcm.tracnghiem.service.SubscriberService;
 import com.ptithcm.tracnghiem.service.UndoRedo;
@@ -111,6 +114,11 @@ public class PnlTeacherManager extends javax.swing.JPanel {
 
         cboSide.setMinimumSize(new java.awt.Dimension(200, 40));
         cboSide.setPreferredSize(new java.awt.Dimension(200, 30));
+        cboSide.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboSideItemStateChanged(evt);
+            }
+        });
         jPanel6.add(cboSide);
 
         jPanel4.add(jPanel6, java.awt.BorderLayout.NORTH);
@@ -141,6 +149,80 @@ public class PnlTeacherManager extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cboSideItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSideItemStateChanged
+        // TODO add your handling code here:
+
+        String selectedValue = cboSide.getSelectedItem().toString();
+        String nameSever = "";
+        try {
+            nameSever = SinhVienRepository.nameSever();
+        } catch (SQLException ex) {
+            Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (selectedValue.strip().equals("CS1")) {
+
+            if (nameSever.strip().equals("LAPTOP-5MDDM7K6\\MSSQLSERVER01")) {
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                    GiangVienController.renderData(PnlTeacherManager.this, true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                    GiangVienController.renderData(PnlTeacherManager.this, false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        } else {
+            if (nameSever.strip().equals("LAPTOP-5MDDM7K6\\MSSQLSERVER02")) {
+
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                    GiangVienController.renderData(PnlTeacherManager.this, true);
+                    System.out.println(cboSide.getSelectedItem().toString());
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                    GiangVienController.renderData(PnlTeacherManager.this, false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+
+    }//GEN-LAST:event_cboSideItemStateChanged
 
 //    Sự kiện con cuộn bảng
     public void scrollRectToVisible(int index) {
@@ -747,13 +829,21 @@ public class PnlTeacherManager extends javax.swing.JPanel {
         } else {
             pnlTeacherInfo.getBtnControlLogin().setEnabled(false);
         }
-        
+
         //kiểm tra xem nếu tài giáo viên chưa có tài khoản thì nút sáng
         if (stringList1.contains(teacher.getMaGV().strip()) == false) {
             pnlTeacherInfo.getBtnControlLogin().setEnabled(true);
-        } 
+        }
         
-        
+        try {
+            //hàm này dùng để kiểm tra lần cuối
+            if(GiaoVienRepository.checkMagvForCreat(magv) == false){
+                pnlTeacherInfo.getBtnControlLogin().setEnabled(false);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PnlTeacherManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         pnlTeacherInfo.getTxtTeacherID().setText(teacher.getMaGV());
         pnlTeacherInfo.getTxtHo().setText(teacher.getHo());
         pnlTeacherInfo.getTxtTen().setText(teacher.getTen());

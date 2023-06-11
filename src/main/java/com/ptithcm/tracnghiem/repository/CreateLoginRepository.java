@@ -38,7 +38,7 @@ public class CreateLoginRepository {
 
     //HÀM NÀY DÙNG ĐỂ TẠO LOGIN TRƯỜNG
     public static int createLoginTruong(String LGName, String Pass, String UserName, String Role) throws SQLException {
-        String sql = "{? = call SP_TAOLOGINTRUONG(?,?,?,?)}";
+        String sql = "{? = call SP_TAOLOGIN(?,?,?,?)}";
 
         try (Connection connection = LoginVariables.databaseConnector.getConnection();) {
             CallableStatement cstm = connection.prepareCall(sql);
@@ -117,7 +117,7 @@ public class CreateLoginRepository {
     
     //hàm này dùng để xóa tài khoản
     public static void clearLoginTruong(String LGName, String UserName) throws SQLException {
-        String sql = "{call SP_XOALOGINTRUONG(?,?)}";
+        String sql = "{call SP_XOALOGIN(?,?)}";
 
         try (Connection connection = LoginVariables.databaseConnector.getConnection();) {
             CallableStatement cstm = connection.prepareCall(sql);
@@ -133,7 +133,7 @@ public class CreateLoginRepository {
 
     //hàm này dùng để kiểm tra xem tài khoản được chọn thuộc nhóm quyền nào
     public static List<String> findAll() throws SQLException {
-        String sql = "{call sp_helprolemember(?)}";
+        String sql = "{call SP_CHECKROLEMEMBER(?)}";
 
         try (Connection connection = LoginVariables.databaseConnector.getConnection();) {
             CallableStatement cstm = connection.prepareCall(sql);

@@ -20,16 +20,17 @@ import java.util.List;
  * @author MINHDAT
  */
 public class MonHocRepository implements SelectDataRepositoryInterface {
+
     @Override
     public Object find(Object object) throws SQLException {
         String sql = "{call SP_LAYTHONGTINMONHOC(?)}";
-        
+
         try (Connection connection = LoginVariables.databaseConnector.getConnection();) {
             CallableStatement cstm = connection.prepareCall(sql);
             cstm.setString(1, String.valueOf(object));
             ResultSet rs = cstm.executeQuery();
-            
-           Object subject = null;
+
+            Object subject = null;
             while (rs.next()) {
                 subject = new MonHoc(rs.getString(1), rs.getString(2));
             }
@@ -40,11 +41,9 @@ public class MonHocRepository implements SelectDataRepositoryInterface {
     @Override
     public List<Object> findAll() throws SQLException {
         String sql = "SELECT * FROM MONHOC";
-        
-        try (Connection cnn = LoginVariables.databaseConnector.getConnection();
-            Statement stmt = cnn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);) {
-            
+
+        try (Connection cnn = LoginVariables.databaseConnector.getConnection(); Statement stmt = cnn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
+
             List<Object> subjects = new ArrayList<>();
             while (rs.next()) {
                 subjects.add(new MonHoc(rs.getString(1), rs.getString(2)));
@@ -52,18 +51,31 @@ public class MonHocRepository implements SelectDataRepositoryInterface {
             return subjects;
         }
     }
-    
-       //hàm này dùng để lưu dữ liệu vào cơ sở dữ liệu
+
+    public List<Object> findAll(boolean check) throws SQLException {
+        String sql = "SELECT * FROM MONHOC";
+
+        try (Connection cnn = LoginVariables.databaseConnector.getConnection(); Statement stmt = cnn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
+
+            List<Object> subjects = new ArrayList<>();
+            while (rs.next()) {
+                subjects.add(new MonHoc(rs.getString(1), rs.getString(2)));
+            }
+            return subjects;
+        }
+    }
+
+    //hàm này dùng để lưu dữ liệu vào cơ sở dữ liệu
     public void saveAll(SQLServerDataTable sqlServerDataTable) throws SQLException {
         String sql = "{call SP_GHIDANHSACHMONHOC(?)}";
-        
+
         try (Connection connection = LoginVariables.databaseConnector.getConnection();) {
             CallableStatement cstm = connection.prepareCall(sql);
             cstm.setObject(1, sqlServerDataTable);
             cstm.execute();
         }
     }
-    
+
     //hàm này dùng để gọi sp kiểm tra xem giản viên có tồn tại hay chưa
     public static boolean checkMaMon(String magv) throws SQLException {
         String sql = "{call SP_CHECKMAMON(?)}";

@@ -211,16 +211,10 @@ public class ValidateFormService {
     public static void validateFrmMonInfoUpdate(PnlMonHocInfo pnlMonHocInfo, List<ObjectAction> objectActions, String magv) throws SQLException, InvalidInputException {
         if (pnlMonHocInfo.getTxtMaMH().getText().strip().equals("")) {
             throw new InvalidInputException("Mã môn học không được bỏ trống!");
-        } else if (pnlMonHocInfo.getTxtMaMH().getText().strip().equals("")) {
-            throw new InvalidInputException("Mã môn học được bỏ trống!");
+        } else if (pnlMonHocInfo.getTxtTenMH().getText().strip().equals("")) {
+            throw new InvalidInputException("Tên môn học được bỏ trống!");
         }
-
-        for (int i = 0; i < objectActions.size(); ++i) {
-            MonHoc gv = (MonHoc) objectActions.get(i).getObjects().get(0);
-            if (pnlMonHocInfo.getTxtMaMH().getText().strip().equals(gv.getMaMH().strip())) {
-                throw new InvalidInputException("Mã môn học còn tồn tại ");
-            }
-        }
+        
 
     }
 

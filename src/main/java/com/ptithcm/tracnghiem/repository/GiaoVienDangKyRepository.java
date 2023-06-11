@@ -25,7 +25,7 @@ public class GiaoVienDangKyRepository implements SelectDataRepositoryInterface, 
     public Object find(Object object) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public static GiaoVienDangKy find(String maLop, String maMH, short lan) throws SQLException {
         String sql = "{call SP_LAYTHONGTINGIAOVIENDANGKY(?,?,?)}";
 
@@ -39,9 +39,9 @@ public class GiaoVienDangKyRepository implements SelectDataRepositoryInterface, 
             GiaoVienDangKy gvdk = null;
             while (rs.next()) {
                 gvdk = new GiaoVienDangKy(
-                        rs.getString(1), rs.getString(2), 
-                        rs.getString(3), rs.getString(4), 
-                        new Date(rs.getTimestamp(5).getTime()), 
+                        rs.getString(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4),
+                        new Date(rs.getTimestamp(5).getTime()),
                         rs.getShort(6), rs.getShort(7), rs.getShort(8)
                 );
             }
@@ -65,7 +65,7 @@ public class GiaoVienDangKyRepository implements SelectDataRepositoryInterface, 
                         new GiaoVienDangKy(
                                 rs.getString(1), rs.getString(2),
                                 rs.getString(3), rs.getString(4),
-                                new Date(rs.getTimestamp(5).getTime()), 
+                                new Date(rs.getTimestamp(5).getTime()),
                                 rs.getShort(6), rs.getShort(7),
                                 rs.getShort(8)
                         )
@@ -74,7 +74,7 @@ public class GiaoVienDangKyRepository implements SelectDataRepositoryInterface, 
             return gvdks;
         }
     }
-    
+
     @Override
     public void saveAll(SQLServerDataTable sqlServerDataTable) throws SQLException {
         String sql = "{call SP_GHIDANHSACHGIAOVIENDANGKY(?)}";
@@ -99,4 +99,7 @@ public class GiaoVienDangKyRepository implements SelectDataRepositoryInterface, 
             return cstm.getInt(1) == 1 ? true : false;
         }
     }
+
+  
+
 }

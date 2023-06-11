@@ -23,9 +23,14 @@ public class GiangVienController {
         pnlWorkSection.fillTableForTeacher(pnlWorkSection.getObjectActions());
         List<Khoa> khoa = KhoaRepository.findAll();
         pnlWorkSection.getPnlTeacherInfo().fillKhoaComboBox(khoa);
-       
+    }
+    
+     public static void renderData(PnlTeacherManager pnlWorkSection , boolean check) throws SQLException {
         
-        
+        pnlWorkSection.setObjectActions(new GiaoVienService().getAllGiaoVien(check));
+        pnlWorkSection.fillTableForTeacher(pnlWorkSection.getObjectActions());
+        List<Khoa> khoa = KhoaRepository.findAll();
+        pnlWorkSection.getPnlTeacherInfo().fillKhoaComboBox(khoa);
     }
 
 }

@@ -20,5 +20,13 @@ public class MonHocController {
         pnlWorkSection.setObjectActions(new MonHocRepository().findAll());
         pnlWorkSection.fillTableForTeacher(pnlWorkSection.getObjectActions());
     }
+    
+    public static void renderData(PnlMonHocManager pnlWorkSection , boolean check) throws SQLException {
+        
+        pnlWorkSection.setObjectActions(new MonHocRepository().findAll(check));
+        pnlWorkSection.fillTableForTeacher(pnlWorkSection.getObjectActions());
+    }
+    
+    
 
 }

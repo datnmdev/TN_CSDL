@@ -4,6 +4,7 @@
  */
 package com.ptithcm.tracnghiem.view;
 
+import com.ptithcm.tracnghiem.controller.GiangVienController;
 import com.ptithcm.tracnghiem.controller.KhoaController;
 import com.ptithcm.tracnghiem.entity.Khoa;
 import com.ptithcm.tracnghiem.exception.InvalidInputException;
@@ -12,6 +13,7 @@ import com.ptithcm.tracnghiem.global_variable.SubscribersVariables;
 import com.ptithcm.tracnghiem.model.dto.ActionStatusEnum;
 import com.ptithcm.tracnghiem.model.dto.ObjectAction;
 import com.ptithcm.tracnghiem.repository.KhoaRepository;
+import com.ptithcm.tracnghiem.repository.SinhVienRepository;
 import com.ptithcm.tracnghiem.service.KhoaService;
 import com.ptithcm.tracnghiem.service.SubscriberService;
 import com.ptithcm.tracnghiem.service.UndoRedo;
@@ -115,6 +117,11 @@ public class PnlKhoaManager extends javax.swing.JPanel {
 
         cboSide.setMinimumSize(new java.awt.Dimension(200, 40));
         cboSide.setPreferredSize(new java.awt.Dimension(200, 30));
+        cboSide.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboSideItemStateChanged(evt);
+            }
+        });
         jPanel6.add(cboSide);
 
         jPanel4.add(jPanel6, java.awt.BorderLayout.NORTH);
@@ -142,6 +149,79 @@ public class PnlKhoaManager extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cboSideItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSideItemStateChanged
+        // TODO add your handling code here:
+                String selectedValue = cboSide.getSelectedItem().toString();
+        String nameSever = "";
+        try {
+            nameSever = SinhVienRepository.nameSever();
+        } catch (SQLException ex) {
+            Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (selectedValue.strip().equals("CS1")) {
+
+            if (nameSever.strip().equals("LAPTOP-5MDDM7K6\\MSSQLSERVER01")) {
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                       KhoaController.renderData(PnlKhoaManager.this , true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                     KhoaController.renderData(PnlKhoaManager.this , false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        } else {
+            if (nameSever.strip().equals("LAPTOP-5MDDM7K6\\MSSQLSERVER02")) {
+
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                     KhoaController.renderData(PnlKhoaManager.this , true);
+                    System.out.println(cboSide.getSelectedItem().toString());
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+                try {
+                    //                Reset dữ liệu của bộ nhớ tạm, undo, redo
+                    objectActions.clear();
+                    undoRedo.reset();
+                    ((DefaultTableModel) tblData.getModel()).setRowCount(0);
+
+                     KhoaController.renderData(PnlKhoaManager.this , false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PnlStudentManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+        
+    }//GEN-LAST:event_cboSideItemStateChanged
 
 //    Sự kiện con cuộn bảng
     public void scrollRectToVisible(int index) {

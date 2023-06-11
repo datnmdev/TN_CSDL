@@ -55,6 +55,30 @@ public class KhoaRepository {
         }
     }
     
+     public List<Object> findAllOb(boolean check) throws SQLException {
+        //String sql = "SELECT * FROM KHOA";
+         String sql = "";
+        if (check == true) {
+            sql = "SELECT * FROM KHOA";
+        } else {
+            sql = "SELECT * FROM link1.TN_CSDLPT.dbo.KHOA;";
+        }
+
+        try (Connection cnn = LoginVariables.databaseConnector.getConnection(); Statement stmt = cnn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
+
+            List<Object> khoa = new ArrayList<>();
+            while (rs.next()) {
+                khoa.add(
+                        new Khoa(
+                                rs.getString(1), rs.getString(2),
+                                rs.getString(3)
+                        )
+                );
+            }
+            return khoa;
+        }
+    }
+    
     //hàm này dùng để lưu dữ liệu vào cơ sở dữ liệu
     public void saveAll(SQLServerDataTable sqlServerDataTable) throws SQLException {
         String sql = "{call SP_GHIDANHSACHKHOA(?)}";
